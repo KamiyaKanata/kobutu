@@ -83,7 +83,7 @@
 | ニコン デジタルカメラ | camera | A |
 | K18 ダイヤリング | jewelry | C |
 
-※写真はUnsplashのプレースホルダー画像URL
+※写真は `picsum.photos` 等の外部プレースホルダーURL。`itemPhotos` テーブルは本番スキーマと互換性を保ちつつ `photoUrl: v.optional(v.string())` フィールドを追加し、プロトタイプ用の外部URLを格納する（`storageId` は null 許容）
 
 ### 古物台帳（3件）
 - 買取 × 2件
