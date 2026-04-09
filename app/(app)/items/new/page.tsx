@@ -102,8 +102,9 @@ export default function NewItemPage() {
             <div
               className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium"
               style={{
-                background: i <= stepIndex ? "var(--accent)" : "var(--border)",
-                color: i <= stepIndex ? "#fff" : "var(--ink-tertiary)",
+                background: i <= stepIndex ? "rgba(27,58,91,0.1)" : "var(--border)",
+                color: i <= stepIndex ? "var(--accent)" : "var(--ink-tertiary)",
+                border: i <= stepIndex ? "1px solid var(--accent)" : "1px solid transparent",
               }}
             >
               {i + 1}

@@ -20,7 +20,7 @@ export default function ItemsPage() {
           商品一覧
         </h2>
         <Link href="/items/new">
-          <Button style={{ background: "var(--accent)", color: "#fff" }}>
+          <Button style={{ background: "transparent", border: "1px solid var(--accent)", color: "var(--accent)" }}>
             <Plus size={16} className="mr-1" />
             商品を登録
           </Button>
@@ -37,7 +37,7 @@ export default function ItemsPage() {
         <div className="text-center py-24" style={{ color: "var(--ink-tertiary)" }}>
           <p className="text-sm">商品がありません</p>
           <Link href="/items/new">
-            <Button className="mt-4" style={{ background: "var(--accent)", color: "#fff" }}>
+            <Button className="mt-4" style={{ background: "transparent", border: "1px solid var(--accent)", color: "var(--accent)" }}>
               最初の商品を登録する
             </Button>
           </Link>

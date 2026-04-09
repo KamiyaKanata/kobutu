@@ -48,7 +48,7 @@ export function ItemCard({ item }: Props) {
             </span>
             <span
               className="text-xs font-bold px-1.5 py-0.5 rounded"
-              style={{ background: rankColors[item.conditionRank] ?? "#ccc", color: "#fff" }}
+              style={{ background: "transparent", border: `1px solid ${rankColors[item.conditionRank] ?? "#ccc"}`, color: rankColors[item.conditionRank] ?? "#ccc" }}
             >
               {item.conditionRank}
             </span>

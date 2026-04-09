@@ -64,7 +64,7 @@ export function StepUpload({ onNext }: Props) {
       <Button
         onClick={() => onNext(files)}
         disabled={files.length === 0}
-        style={{ background: "var(--accent)", color: "#fff" }}
+        style={{ background: "transparent", border: "1px solid var(--accent)", color: "var(--accent)" }}
       >
         次へ: AIで解析する
       </Button>

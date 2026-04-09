@@ -62,7 +62,7 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
           <div className="flex items-center gap-2">
             <span
               className="text-sm font-bold px-2 py-0.5 rounded"
-              style={{ background: rankColors[item.conditionRank] ?? "#ccc", color: "#fff" }}
+              style={{ background: "transparent", border: `1px solid ${rankColors[item.conditionRank] ?? "#ccc"}`, color: rankColors[item.conditionRank] ?? "#ccc" }}
             >
               {item.conditionRank}ランク
             </span>

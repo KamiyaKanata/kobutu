@@ -50,7 +50,7 @@ export function AppSidebar() {
               )}
               style={
                 isActive
-                  ? { background: "var(--accent)", color: "#fff" }
+                  ? { background: "rgba(27,58,91,0.08)", color: "var(--accent)" }
                   : { color: "var(--ink-secondary)" }
               }
             >

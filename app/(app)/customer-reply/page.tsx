@@ -75,7 +75,7 @@ export default function CustomerReplyPage() {
               onChange={(e) => setOriginalMessage(e.target.value)} />
           </div>
           <Button onClick={handleGenerate} disabled={loading || !originalMessage}
-            className="w-full" style={{ background: "var(--accent)", color: "#fff" }}>
+            className="w-full" style={{ background: "transparent", border: "1px solid var(--accent)", color: "var(--accent)" }}>
             {loading ? "生成中..." : "返信文を生成"}
           </Button>
         </div>

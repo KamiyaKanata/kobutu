@@ -43,7 +43,7 @@ export default function DashboardPage() {
             <Button
               onClick={handleSeed}
               disabled={seeding}
-              style={{ background: "var(--accent)", color: "#fff" }}
+              style={{ background: "transparent", border: "1px solid var(--accent)", color: "var(--accent)" }}
             >
               {seeding ? "投入中..." : "シードデータを投入"}
             </Button>

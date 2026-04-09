@@ -24,7 +24,7 @@ export default function LedgerPage() {
             CSV出力（準備中）
           </Button>
           <Link href="/ledger/new">
-            <Button style={{ background: "var(--accent)", color: "#fff" }}>
+            <Button style={{ background: "transparent", border: "1px solid var(--accent)", color: "var(--accent)" }}>
               <Plus size={14} className="mr-1" />
               新規登録
             </Button>

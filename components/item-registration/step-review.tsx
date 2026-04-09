@@ -158,7 +158,7 @@ export function StepReview({ result, photoUrl, onSave, saving }: Props) {
           onClick={() => onSave(data)}
           disabled={saving}
           className="w-full"
-          style={{ background: "var(--accent)", color: "#fff" }}
+          style={{ background: "transparent", border: "1px solid var(--accent)", color: "var(--accent)" }}
         >
           {saving ? "登録中..." : "登録する"}
         </Button>

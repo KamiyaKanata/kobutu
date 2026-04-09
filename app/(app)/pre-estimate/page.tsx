@@ -70,7 +70,7 @@ export default function PreEstimatePage() {
               onChange={(e) => setForm((p) => ({ ...p, selfReportedCondition: e.target.value }))} />
           </div>
           <Button onClick={handleSubmit} disabled={loading || !form.itemCategory || !form.selfReportedCondition}
-            className="w-full" style={{ background: "var(--accent)", color: "#fff" }}>
+            className="w-full" style={{ background: "transparent", border: "1px solid var(--accent)", color: "var(--accent)" }}>
             {loading ? "査定中..." : "AIに査定してもらう"}
           </Button>
         </div>

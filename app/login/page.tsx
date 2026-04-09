@@ -25,7 +25,7 @@ export default function LoginPage() {
         <Button
           onClick={handleLogin}
           className="w-full"
-          style={{ background: "var(--accent)", color: "#fff" }}
+          style={{ background: "transparent", border: "1px solid var(--accent)", color: "var(--accent)" }}
         >
           ログイン（デモ）
         </Button>

@@ -45,7 +45,7 @@ export default function ChannelsPage({ params }: { params: Promise<{ id: string 
             商品詳細に戻る
           </Button>
         </Link>
-        <Button onClick={handleGenerate} disabled={generating} style={{ background: "var(--accent)", color: "#fff" }}>
+        <Button onClick={handleGenerate} disabled={generating} style={{ background: "transparent", border: "1px solid var(--accent)", color: "var(--accent)" }}>
           <RefreshCw size={14} className={`mr-1 ${generating ? "animate-spin" : ""}`} />
           {generating ? "生成中..." : "テキストを生成"}
         </Button>
@@ -63,7 +63,7 @@ export default function ChannelsPage({ params }: { params: Promise<{ id: string 
       {channels.length === 0 ? (
         <div className="text-center py-16" style={{ color: "var(--ink-tertiary)" }}>
           <p className="text-sm mb-4">まだテキストが生成されていません</p>
-          <Button onClick={handleGenerate} disabled={generating} style={{ background: "var(--accent)", color: "#fff" }}>
+          <Button onClick={handleGenerate} disabled={generating} style={{ background: "transparent", border: "1px solid var(--accent)", color: "var(--accent)" }}>
             テキストを生成する
           </Button>
         </div>

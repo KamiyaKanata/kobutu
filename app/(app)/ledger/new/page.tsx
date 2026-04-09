@@ -139,7 +139,7 @@ export default function LedgerNewPage() {
           </div>
         </div>
 
-        <Button onClick={handleSave} disabled={saving} className="w-full" style={{ background: "var(--accent)", color: "#fff" }}>
+        <Button onClick={handleSave} disabled={saving} className="w-full" style={{ background: "transparent", border: "1px solid var(--accent)", color: "var(--accent)" }}>
           {saving ? "登録中..." : "台帳に登録する"}
         </Button>
       </div>

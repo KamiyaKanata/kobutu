@@ -9,7 +9,7 @@ export default function LandingPage() {
         <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
           <span className="font-medium text-lg" style={{ fontFamily: "var(--font-display)" }}>AI古物</span>
           <Link href="/login">
-            <Button size="sm" style={{ background: "var(--accent)", color: "#fff" }}>ログイン</Button>
+            <Button size="sm" style={{ background: "transparent", border: "1px solid var(--accent)", color: "var(--accent)" }}>ログイン</Button>
           </Link>
         </div>
       </header>
@@ -33,7 +33,7 @@ export default function LandingPage() {
             査定から登録、販売チャネル展開まで。1点あたり20分の作業を3分に。
           </p>
           <Link href="/login">
-            <Button style={{ background: "var(--accent)", color: "#fff" }}>デモを試す</Button>
+            <Button style={{ background: "transparent", border: "1px solid var(--accent)", color: "var(--accent)" }}>デモを試す</Button>
           </Link>
         </div>
       </section>
@@ -77,10 +77,10 @@ export default function LandingPage() {
               { id: "D", title: "AI古物 市場", desc: "古物市場でスマホ撮影→即座に自社在庫へ流入。", highlight: false },
             ].map(({ id, title, desc, highlight }) => (
               <div key={id} className="rounded-lg border p-5 space-y-2"
-                style={{ borderColor: highlight ? "var(--accent)" : "var(--border)", background: highlight ? "var(--accent)" : "var(--bg-primary)" }}>
-                <p className="text-xs font-medium" style={{ color: highlight ? "rgba(255,255,255,0.7)" : "var(--ink-tertiary)" }}>Module {id}</p>
-                <p className="text-sm font-medium" style={{ color: highlight ? "#fff" : "var(--ink-primary)", fontFamily: "var(--font-display)" }}>{title}</p>
-                <p className="text-xs leading-relaxed" style={{ color: highlight ? "rgba(255,255,255,0.8)" : "var(--ink-secondary)" }}>{desc}</p>
+                style={{ borderColor: highlight ? "var(--accent)" : "var(--border)", background: highlight ? "rgba(27,58,91,0.06)" : "var(--bg-primary)" }}>
+                <p className="text-xs font-medium" style={{ color: highlight ? "var(--accent)" : "var(--ink-tertiary)" }}>Module {id}</p>
+                <p className="text-sm font-medium" style={{ color: "var(--ink-primary)", fontFamily: "var(--font-display)" }}>{title}</p>
+                <p className="text-xs leading-relaxed" style={{ color: "var(--ink-secondary)" }}>{desc}</p>
               </div>
             ))}
           </div>
@@ -93,7 +93,7 @@ export default function LandingPage() {
           <h2 className="text-2xl" style={{ fontFamily: "var(--font-display)" }}>まずデモを触ってみてください</h2>
           <p className="text-sm" style={{ color: "var(--ink-secondary)" }}>登録不要。すぐに全機能を体験できます。</p>
           <Link href="/login">
-            <Button size="lg" style={{ background: "var(--accent)", color: "#fff" }}>デモを開始する →</Button>
+            <Button size="lg" style={{ background: "transparent", border: "1px solid var(--accent)", color: "var(--accent)" }}>デモを開始する →</Button>
           </Link>
         </div>
       </section>
