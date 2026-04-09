@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;700&family=Noto+Sans+JP:wght@400;500&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -81,6 +82,21 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* AI古物 custom design tokens */
+  --bg-primary: #f7f6f1;
+  --bg-card: #ffffff;
+  --ink-primary: #0f1419;
+  --ink-secondary: #5a5d62;
+  --ink-tertiary: #9a9ca0;
+  --kobutu-accent: #1b3a5b;
+  --kobutu-accent-hover: #2a5280;
+  --kobutu-border: #e5e3dc;
+  --kobutu-success: #2d5e3e;
+  --kobutu-warning: #8a5a1a;
+  --kobutu-danger: #8b2520;
+  --font-display: 'Noto Serif JP', 'Yu Mincho', serif;
+  --font-body: 'Noto Sans JP', 'Yu Gothic', sans-serif;
 }
 
 .dark {
@@ -123,8 +139,14 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-color: var(--bg-primary);
+    color: var(--ink-primary);
+    font-family: var(--font-body);
   }
   html {
     @apply font-sans;
+  }
+  h1, h2, h3 {
+    font-family: var(--font-display);
   }
 }
