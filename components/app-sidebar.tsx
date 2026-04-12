@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Package, BookOpen, Home, MessageSquare, Calculator, LogOut, Settings } from "lucide-react";
+import { Package, BookOpen, Home, MessageSquare, Calculator, LogOut, Settings, Mic } from "lucide-react";
 import { logout } from "@/lib/auth";
 import { cn } from "@/lib/utils";
 
@@ -10,6 +10,7 @@ const navItems = [
   { href: "/items", label: "商品管理", icon: Package },
   { href: "/ledger", label: "古物台帳", icon: BookOpen },
   { href: "/customer-reply", label: "顧客対応", icon: MessageSquare },
+  { href: "/conversations", label: "会話分析", icon: Mic },
   { href: "/pre-estimate", label: "事前査定", icon: Calculator },
   { href: "/settings", label: "AI設定", icon: Settings },
 ];

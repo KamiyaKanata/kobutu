@@ -113,6 +113,24 @@ export default defineSchema({
     updatedAt: v.number(),
   }).index("by_store", ["storeId"]),
 
+  conversationFeedbacks: defineTable({
+    storeId: v.id("stores"),
+    fileName: v.string(),
+    fileType: v.union(v.literal("audio"), v.literal("video")),
+    staffName: v.optional(v.string()),
+    transcript: v.optional(v.string()),
+    overallScore: v.optional(v.number()),
+    goodPoints: v.optional(v.array(v.string())),
+    improvementPoints: v.optional(v.array(v.string())),
+    keyMoments: v.optional(v.array(v.object({
+      time: v.string(),
+      label: v.union(v.literal("good"), v.literal("improve")),
+      note: v.string(),
+    }))),
+    status: v.union(v.literal("analyzing"), v.literal("done")),
+    createdAt: v.number(),
+  }).index("by_store", ["storeId"]),
+
   customerReplies: defineTable({
     storeId: v.id("stores"),
     itemId: v.optional(v.id("items")),

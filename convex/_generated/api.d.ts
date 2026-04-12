@@ -10,6 +10,7 @@
 
 import type * as ai from "../ai.js";
 import type * as channelContents from "../channelContents.js";
+import type * as conversationFeedbacks from "../conversationFeedbacks.js";
 import type * as customerReplies from "../customerReplies.js";
 import type * as itemPhotos from "../itemPhotos.js";
 import type * as items from "../items.js";
@@ -28,6 +29,7 @@ import type {
 declare const fullApi: ApiFromModules<{
   ai: typeof ai;
   channelContents: typeof channelContents;
+  conversationFeedbacks: typeof conversationFeedbacks;
   customerReplies: typeof customerReplies;
   itemPhotos: typeof itemPhotos;
   items: typeof items;

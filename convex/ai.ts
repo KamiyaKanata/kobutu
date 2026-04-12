@@ -111,6 +111,64 @@ export const generateCustomerReply = action({
   },
 });
 
+export const analyzeConversation = action({
+  args: {
+    feedbackId: v.id("conversationFeedbacks"),
+  },
+  handler: async (ctx, { feedbackId }) => {
+    // 疑似的な解析時間（実際はWhisper文字起こし + Claude分析）
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+
+    const transcript = `スタッフ: いらっしゃいませ。本日はどのようなご用件でしょうか？
+
+お客様: こちらのバッグを売りたいんですけど、いくらになりますか？
+
+スタッフ: ありがとうございます。拝見してもよろしいでしょうか。……こちら、ルイヴィトンのネヴァーフルですね。状態を確認させていただきます。
+
+お客様: 3年前に買ったんですけど、あまり使っていなくて。
+
+スタッフ: そうでしたか。内側を見ると少し使用感がありますが、外観はとても綺麗な状態ですね。本日のお買取り額は28,000円でいかがでしょうか。
+
+お客様: もう少し上がりませんか？
+
+スタッフ: 現在の市場相場と状態から算出しておりまして、この金額が精一杯の金額となっております。
+
+お客様: わかりました、それでお願いします。
+
+スタッフ: ありがとうございます。それでは本人確認書類をご準備いただけますでしょうか。`;
+
+    const result = {
+      transcript,
+      overallScore: 4,
+      goodPoints: [
+        "第一声の挨拶が明確で丁寧だった",
+        "商品確認の際に許可を取るひと言があった（良い接客マナー）",
+        "ブランドと状態を素早く確認・説明できていた",
+        "本人確認の案内をスムーズに行えた",
+      ],
+      improvementPoints: [
+        "値引き交渉への対応で「精一杯」の一言で終わっている。代替案（別モデルの買取り、次回ポイント等）を提示できるとよい",
+        "お客様が「あまり使っていなくて」と話したタイミングで、より共感を示すひと言があるとよかった",
+        "査定額の根拠（相場の説明）をもう少し具体的に伝えると納得感が高まる",
+      ],
+      keyMoments: [
+        { time: "0:08", label: "good" as const, note: "丁寧な出迎えの挨拶" },
+        { time: "0:22", label: "good" as const, note: "「拝見してもよろしいでしょうか」と許可を取った" },
+        { time: "1:15", label: "good" as const, note: "状態と買取額を簡潔に説明" },
+        { time: "1:32", label: "improve" as const, note: "値引き交渉への対応。代替案提示の余地あり" },
+        { time: "1:48", label: "improve" as const, note: "相場根拠の説明が不十分" },
+      ],
+    };
+
+    await ctx.runMutation(api.conversationFeedbacks.updateResult, {
+      id: feedbackId,
+      ...result,
+    });
+
+    return result;
+  },
+});
+
 export const estimatePrice = action({
   args: {
     storeId: v.id("stores"),
