@@ -89,14 +89,18 @@
   --ink-primary: #0f1419;
   --ink-secondary: #5a5d62;
   --ink-tertiary: #9a9ca0;
-  --kobutu-accent: #1b3a5b;
-  --kobutu-accent-hover: #2a5280;
-  --kobutu-border: #e5e3dc;
-  --kobutu-success: #2d5e3e;
-  --kobutu-warning: #8a5a1a;
-  --kobutu-danger: #8b2520;
   --font-display: 'Noto Serif JP', 'Yu Mincho', serif;
   --font-body: 'Noto Sans JP', 'Yu Gothic', sans-serif;
+
+  /* Override shadcn defaults with kobutu design */
+  --accent: #1b3a5b;
+  --accent-foreground: #f7f6f1;
+  --border: #e5e3dc;
+  --success: #2d5e3e;
+  --warning: #8a5a1a;
+  --danger: #8b2520;
+  --muted: #f0efe9;
+  --muted-foreground: #3d3f44;
 }
 
 .dark {
