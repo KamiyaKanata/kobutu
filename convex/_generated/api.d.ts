@@ -16,6 +16,7 @@ import type * as items from "../items.js";
 import type * as kobutsuLedger from "../kobutsuLedger.js";
 import type * as preEstimates from "../preEstimates.js";
 import type * as seed from "../seed.js";
+import type * as storeSettings from "../storeSettings.js";
 import type * as stores from "../stores.js";
 
 import type {
@@ -33,6 +34,7 @@ declare const fullApi: ApiFromModules<{
   kobutsuLedger: typeof kobutsuLedger;
   preEstimates: typeof preEstimates;
   seed: typeof seed;
+  storeSettings: typeof storeSettings;
   stores: typeof stores;
 }>;
 

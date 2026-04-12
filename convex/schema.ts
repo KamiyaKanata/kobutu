@@ -74,8 +74,11 @@ export default defineSchema({
     partyName: v.string(),
     partyAddress: v.string(),
     partyBirthDate: v.optional(v.string()),
+    partyOccupation: v.optional(v.string()),
     idVerificationMethod: v.string(),
+    idNumber: v.optional(v.string()),
     itemDescription: v.string(),
+    itemFeatures: v.optional(v.string()),
     quantity: v.number(),
     amount: v.number(),
     relatedItemId: v.optional(v.id("items")),
@@ -98,6 +101,16 @@ export default defineSchema({
       v.literal("converted"),
     ),
     createdAt: v.number(),
+  }).index("by_store", ["storeId"]),
+
+  storeSettings: defineTable({
+    storeId: v.id("stores"),
+    specialtyCategories: v.optional(v.string()),
+    conditionRankCriteria: v.optional(v.string()),
+    descriptionTone: v.optional(v.string()),
+    ngWords: v.optional(v.string()),
+    brandScope: v.optional(v.string()),
+    updatedAt: v.number(),
   }).index("by_store", ["storeId"]),
 
   customerReplies: defineTable({
