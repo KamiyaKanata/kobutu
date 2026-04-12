@@ -19,6 +19,10 @@ export const upsert = mutation({
     descriptionTone: v.optional(v.string()),
     ngWords: v.optional(v.string()),
     brandScope: v.optional(v.string()),
+    replyTemplateInquiry: v.optional(v.string()),
+    replyTemplateReturn: v.optional(v.string()),
+    replyTemplateComplaint: v.optional(v.string()),
+    replyTemplateReview: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
     const existing = await ctx.db

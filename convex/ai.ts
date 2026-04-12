@@ -179,9 +179,40 @@ export const estimatePrice = action({
   },
   handler: async (ctx, args) => {
     await new Promise((resolve) => setTimeout(resolve, 1500));
-    const min = 15000;
-    const max = 25000;
-    const note = "写真や詳細情報を拝見したうえで、正確な査定額をご提示いたします。お気軽にご来店ください。";
+
+    const categoryBasePrice: Record<string, { min: number; max: number; label: string }> = {
+      bag:      { min: 15000, max: 85000, label: "バッグ" },
+      watch:    { min: 30000, max: 200000, label: "時計" },
+      jewelry:  { min: 8000,  max: 60000,  label: "ジュエリー" },
+      wallet:   { min: 5000,  max: 30000,  label: "財布" },
+      camera:   { min: 5000,  max: 40000,  label: "カメラ" },
+      other:    { min: 3000,  max: 20000,  label: "その他" },
+    };
+
+    const base = categoryBasePrice[args.itemCategory] ?? categoryBasePrice.other;
+    const cond = args.selfReportedCondition.toLowerCase();
+    const hasBox = cond.includes("箱") || cond.includes("保証");
+    const isUnused = cond.includes("未使用") || cond.includes("新品");
+    const hasScratches = cond.includes("傷") || cond.includes("汚れ");
+
+    let rankMultiplier = 0.6;
+    let conditionLabel = "Bランク相当（使用感あり）";
+    if (isUnused) { rankMultiplier = 1.0; conditionLabel = "Sランク相当（未使用）"; }
+    else if (!hasScratches) { rankMultiplier = 0.8; conditionLabel = "Aランク相当（目立つ傷なし）"; }
+    else { rankMultiplier = 0.5; conditionLabel = "Cランク相当（傷・使用感あり）"; }
+
+    const accessoryBonus = hasBox ? 1.1 : 1.0;
+    const min = Math.round(base.min * rankMultiplier * accessoryBonus / 1000) * 1000;
+    const max = Math.round(base.max * rankMultiplier * accessoryBonus / 1000) * 1000;
+
+    const reasoning = [
+      { label: "カテゴリ基準価格", detail: `${base.label}の相場: ${base.min.toLocaleString()}〜${base.max.toLocaleString()}円` },
+      { label: "状態評価", detail: conditionLabel },
+      { label: "付属品ボーナス", detail: hasBox ? "箱・保証書あり（+10%）" : "付属品なし（±0%）" },
+      { label: "市場調整", detail: "直近3ヶ月の買取相場を参照（モック）" },
+    ];
+
+    const note = "実物確認後に正式査定額をご提示します。ブランド・型番・シリアル番号が確認できると精度が上がります。";
 
     await ctx.runMutation(api.preEstimates.submit, {
       storeId: args.storeId,
@@ -194,6 +225,6 @@ export const estimatePrice = action({
       aiNote: note,
     });
 
-    return { min, max, note };
+    return { min, max, note, reasoning };
   },
 });

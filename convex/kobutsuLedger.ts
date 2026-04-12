@@ -12,6 +12,39 @@ export const list = query({
   },
 });
 
+export const search = query({
+  args: {
+    storeId: v.id("stores"),
+    keyword: v.optional(v.string()),
+    dateFrom: v.optional(v.number()),
+    dateTo: v.optional(v.number()),
+    transactionType: v.optional(v.union(v.literal("purchase"), v.literal("sale"), v.literal("all"))),
+  },
+  handler: async (ctx, { storeId, keyword, dateFrom, dateTo, transactionType }) => {
+    let entries = await ctx.db
+      .query("kobutsuLedger")
+      .withIndex("by_store_and_date", (q) => q.eq("storeId", storeId))
+      .order("desc")
+      .collect();
+
+    if (dateFrom) entries = entries.filter((e) => e.transactionDate >= dateFrom);
+    if (dateTo) entries = entries.filter((e) => e.transactionDate <= dateTo);
+    if (transactionType && transactionType !== "all") {
+      entries = entries.filter((e) => e.transactionType === transactionType);
+    }
+    if (keyword) {
+      const kw = keyword.toLowerCase();
+      entries = entries.filter((e) =>
+        e.partyName.toLowerCase().includes(kw) ||
+        e.itemDescription.toLowerCase().includes(kw) ||
+        (e.partyAddress ?? "").toLowerCase().includes(kw) ||
+        (e.itemFeatures ?? "").toLowerCase().includes(kw)
+      );
+    }
+    return entries;
+  },
+});
+
 export const create = mutation({
   args: {
     storeId: v.id("stores"),

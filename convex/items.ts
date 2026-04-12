@@ -89,6 +89,36 @@ export const update = mutation({
   },
 });
 
+export const dashboardStats = query({
+  args: { storeId: v.id("stores") },
+  handler: async (ctx, { storeId }) => {
+    const items = await ctx.db
+      .query("items")
+      .withIndex("by_store", (q) => q.eq("storeId", storeId))
+      .collect();
+
+    const withChannels = await Promise.all(
+      items.map(async (item) => {
+        const channels = await ctx.db
+          .query("channelContents")
+          .withIndex("by_item_and_channel", (q) => q.eq("itemId", item._id))
+          .collect();
+        return { ...item, channelCount: channels.length };
+      })
+    );
+
+    const noBrand = withChannels.filter((i) => !i.brand).length;
+    const noChannel = withChannels.filter((i) => i.channelCount === 0 && i.status !== "draft").length;
+    const draft = withChannels.filter((i) => i.status === "draft").length;
+    const ready = withChannels.filter((i) => i.status === "ready").length;
+    const published = withChannels.filter((i) => i.status === "published").length;
+    const total = withChannels.length;
+    const deployRate = total > 0 ? Math.round((published / total) * 100) : 0;
+
+    return { total, draft, ready, published, deployRate, noBrand, noChannel };
+  },
+});
+
 export const remove = mutation({
   args: { itemId: v.id("items") },
   handler: async (ctx, { itemId }) => {
