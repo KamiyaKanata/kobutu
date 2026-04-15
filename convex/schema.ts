@@ -138,6 +138,21 @@ export default defineSchema({
     createdAt: v.number(),
   }).index("by_store", ["storeId"]),
 
+  inventoryLots: defineTable({
+    storeId: v.id("stores"),
+    name: v.string(),
+    category: v.string(),
+    subcategory: v.optional(v.string()),
+    brand: v.optional(v.string()),
+    totalQuantity: v.number(),
+    soldQuantity: v.number(),
+    purchaseDate: v.number(),
+    unitCost: v.optional(v.number()),
+    unitPrice: v.optional(v.number()),
+    note: v.optional(v.string()),
+    createdAt: v.number(),
+  }).index("by_store", ["storeId"]),
+
   customerReplies: defineTable({
     storeId: v.id("stores"),
     itemId: v.optional(v.id("items")),
